@@ -4,3 +4,15 @@ This app will allow users to view the database of products availible, and select
 
 For screenshots of the process, please visit: 
 [Screenshots](http://github.com)
+
+##Instructions:
+
+Step 1: Enter "node bamazonCustomer.js" to run the app within the command terminal
+
+Step 2: Enter the ID of the product that you would like to purchase along with the quantity.
+
+	*If the item is in stock, you will be provided with a confirmation of the total. Please note that within the database screenshot that the inventory adjustment is also reflected.
+
+	*If the product is out of stock, you will be informed and prompted to purchase a different item.
+
+Thanks for using Bamazon! 
