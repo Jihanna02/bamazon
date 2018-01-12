@@ -60,14 +60,29 @@ function runInquirer() {
 function checkInventory(p,q) {
   //if there's no inventory print message and prevent order
   //else run function to fill order
+    connection.query("SELECT * FROM products WHERE item_id='" + p + "'", function (err, result, fields) {
+    if (err) throw err;
 
-  fillOrder(n);
+    var inventory = result[0].stock_quantity;
+    var c = result[0].price;
+
+    if (inventory >= q){
+
+      fillOrder(p,q,c);
+
+    } else {
+      console.log("Insufficient quantity! Please order another item.");
+      runInquirer();
+    }
+
+  });
 }
 
-//function to fill order
-function fillOrder(n) {
+//function to fill order p=product id, c=cost, q=quantity
+function fillOrder(p,c,q) {
  //update the database
  //show customer the total cost
+  console.log("Order confirmed. Total: $"+ c*q);
 }
 
 //Connect to Database
