@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 });
 
 //functions that do stuff!
-//function to display inventory DB and prompt
+//function definition to display inventory DB and call inquirer function
 function startBamazon() {
   var inventory = [];
 
@@ -32,7 +32,7 @@ function startBamazon() {
 
 }
 
-//function to run Inquirer
+//function definition to run Inquirer and call to run checkInventory function
 function runInquirer() {
 
 
@@ -87,14 +87,14 @@ function fillOrder(p,c,q,i) {
   connection.query(sql, function (err, result) {
       if (err) throw err;
       console.log("Order confirmed. Total: $"+ c*q);
-    });
+  });
 }
 
 //Connect to Database
 // connect to the mysql server and sql database
-connection.connect(function(err) {
-  if (err) {
-    console.log(err);
+  connection.connect(function(err) {
+    if (err) {
+      console.log(err);
   }
   // run the start function after the connection is made to prompt the user
   startBamazon();
