@@ -68,7 +68,7 @@ function checkInventory(p,q) {
 
     if (inventory >= q){
 
-      fillOrder(p,q,c);
+      fillOrder(p,c,q,inventory);
 
     } else {
       console.log("Insufficient quantity! Please order another item.");
@@ -78,11 +78,16 @@ function checkInventory(p,q) {
   });
 }
 
-//function to fill order p=product id, c=cost, q=quantity
-function fillOrder(p,c,q) {
+//function to fill order p=product id, c=cost, q=quantity, i=inventory
+function fillOrder(p,c,q,i) {
  //update the database
  //show customer the total cost
-  console.log("Order confirmed. Total: $"+ c*q);
+  var newInventory = i - q;
+  var sql = "UPDATE products SET stock_quantity = '"+ newInventory +"' WHERE item_id = '"+ p +"'";
+  connection.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("Order confirmed. Total: $"+ c*q);
+    });
 }
 
 //Connect to Database
